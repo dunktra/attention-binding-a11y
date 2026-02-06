@@ -66,7 +66,7 @@ attention-binding-a11y/
 ### Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/attention-binding-a11y.git
+git clone https://github.com/dunktra/attention-binding-a11y.git
 cd attention-binding-a11y
 
 python -m venv venv
@@ -142,7 +142,7 @@ python src/analysis_pilot.py 160m
          Concept Emergence in Language Models},
   author={Tran, Khanh-Dung},
   year={2026},
-  url={https://github.com/YOUR_USERNAME/attention-binding-a11y}
+  url={https://github.com/dunktra/attention-binding-a11y}
 }
 ```
 
