@@ -12,6 +12,7 @@ pandas>=2.0.0
 # Utilities
 tqdm>=4.65.0
 matplotlib>=3.7.0
+pyyaml>=6.0.0
 
 # Jupyter (for notebooks)
 jupyter>=1.0.0

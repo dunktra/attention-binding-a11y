@@ -146,6 +146,24 @@ python src/analysis_pilot.py 160m
 }
 ```
 
+## Paper Compilation
+
+The paper source is in `paper/` as Markdown. To compile to PDF:
+
+```bash
+# Install pandoc
+sudo apt-get install pandoc texlive-latex-base texlive-latex-extra
+
+# Compile all sections into a single PDF
+cd paper
+pandoc main.md sections/introduction.md sections/related_work.md \
+       sections/methods.md sections/results.md sections/discussion.md \
+       sections/conclusion.md appendix/raw_data.md \
+       -o attention_binding_a11y.pdf \
+       --pdf-engine=pdflatex \
+       -V geometry:margin=1in
+```
+
 ## License
 
 MIT License — see [LICENSE](LICENSE).
