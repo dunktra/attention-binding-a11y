@@ -26,7 +26,7 @@ These results establish C1: attention binding temporally precedes behavioral com
 
 ## 4.2 Unlockable Latent Knowledge (C3)
 
-If binding structure represents genuine conceptual organization, models with high EB\* but low behavioral performance should contain *latent knowledge* that few-shot prompting can unlock. We test this by comparing zero-shot and one-shot generation performance on checkpoints where EB\* > 0.6.
+If binding structure represents genuine conceptual organization, models with high EB\* but low behavioral performance should contain *latent knowledge* that few-shot prompting can unlock. We test this by comparing zero-shot and few-shot generation performance on checkpoints where EB\* > 0.6.
 
 **Results.** Table 2 shows dramatic unlockability effects:
 
@@ -36,13 +36,13 @@ If binding structure represents genuine conceptual organization, models with hig
 | 160M | step 30k | 0.642 | 0.667 | 0.944 | +27.8 | +42% |
 | 1B | step 15k | 0.646 | 0.556 | 0.944 | +38.9 | +70% |
 
-The 160M step 15k result is striking: despite low zero-shot generation performance (0.333), a single example unlocks 94.4% generation accuracy.
+The 160M step 15k result is striking: despite low zero-shot generation performance (0.333), a two-sentence priming prefix unlocks 94.4% generation accuracy.
 
 **Ceiling convergence.** The few-shot scores converge to near-identical levels (0.944) across checkpoints with different zero-shot baselines (0.333–0.667). This consistency suggests that binding structure at EB* > 0.6 corresponds to *complete* conceptual knowledge that is simply inaccessible to standard prompting—not partial knowledge that improves incrementally with training. The ceiling effect reflects scoring rubric granularity (near-perfect keyword coverage) rather than model capability limits [Burns et al., 2022].
 
 **Control.** At step 0 (EB\* ≈ 0.15, low binding), few-shot prompting produces negligible improvement, confirming that binding structure is a necessary precondition for unlockability.
 
-**Copying caveat.** Inspection of the one-shot outputs reveals that the model frequently reproduces phrasing from the provided example (e.g., repeating "keyboard-accessible link" from the skip-link example). This in-context copying inflates generation scores. Nevertheless, the pattern remains informative: models with EB\* > 0.6 can leverage contextual cues to produce term-appropriate content, while models with EB\* < 0.3 cannot, regardless of prompting strategy. The binding structure thus identifies models that are *ready* to express conceptual knowledge, even if zero-shot probes fail to elicit it.
+**Copying caveat.** Few-shot outputs often reproduce phrasing from the priming prefix, inflating generation scores. Nevertheless, the pattern remains informative: models with EB\* > 0.6 can leverage contextual cues to produce term-appropriate content, while models with EB\* < 0.3 cannot, regardless of prompting strategy. The binding structure thus identifies models that are *ready* to express conceptual knowledge, even if zero-shot probes fail to elicit it.
 
 ## 4.3 Scale-Dependent Decoupling (C4)
 
@@ -63,7 +63,7 @@ At 160M and 2.8B, binding and behavior co-evolve (positively correlated). At 1B,
 
 **Interpretation.** The 1B model occupies a transitional regime [Kaplan et al., 2020] between small models (where binding directly supports behavior) and large models (where binding saturates at high levels and behavior develops through distributed or redundant representations [Hinton et al., 1986]). This may reflect a capacity threshold: at 1B parameters, the model has sufficient capacity to develop behavioral competence through pathways other than attention binding, but not enough capacity for binding to saturate at the high levels seen in 2.8B.
 
-*[Figure 4: 1B decoupling effect. EB\* (red) saturates at step 15k while behavioral score (green) continues rising through step 143k. Shaded region indicates the decoupling period.]*
+*[Figure 2: 1B decoupling effect. EB\* (red) saturates at step 15k while behavioral score (green) continues rising through step 143k. Shaded region indicates the decoupling period.]*
 
 ## 4.4 Mechanistic Causality: Cross-Scale Ablation (C5)
 

@@ -61,7 +61,7 @@ Our metrics operationalize this by measuring whether attention routes informatio
 \end{sloppypar}
 
 We study Pythia models (160M, 1B, 2.8B) across eight checkpoints (step 0--143K).
-Our contributions are organized around four empirical claims (C1, C3--C5); a fifth claim concerning representational stability to prompt perturbations (C2) remains for future work (see Section~5.4):
+Our contributions are organized around four empirical claims (C1, C3--C5); a fifth claim concerning representational stability to prompt perturbations (C2) remains for future work (see Section~5.4).\footnote{Claim C2 concerning stability to prompt perturbations was deprioritized for this study due to computational constraints; preliminary analysis suggests the effect is secondary to the binding--behavior dynamics reported here.}
 
 \begin{enumerate}
   \item \textbf{Lead-lag emergence (C1).} Binding (EB$^*$) rises before behavioral competence, establishing temporal precedence (Section~4.1).
@@ -294,7 +294,7 @@ The 1B model represents an intermediate regime: binding saturates early (step 15
 2.8B & 0.338 & 0.0008*** & Rapid synchronized \\
 \hline
 \end{tabular}
-\caption{Correlation between EB$^*$ and behavioral accuracy across model scales.}
+\caption{Correlation between EB$^*$ and behavioral accuracy across model scales. $p$-values from exact permutation tests (10{,}000 shuffles); asymptotic approximations are unreliable with $n=8$ checkpoints.}
 \end{table}
 
 These results establish C1: attention binding temporally precedes behavioral competence, with the lead-lag interval varying by scale.
@@ -350,7 +350,7 @@ This suggests late-training dynamics can disrupt the binding-to-behavior mapping
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{attention-binding-a11y-main/figures/figure4_1b_decoupling.pdf}
-\caption{Decoupling at 1B scale: EB$^*$ saturates early while behavioral score continues improving through step 143K.}
+\caption{Decoupling at 1B scale: EB$^*$ saturates early while behavioral score continues improving through step 143K. (Note: source file retains original filename \texttt{figure4\_1b\_decoupling.pdf}.)}
 \label{fig:decoupling}
 \end{figure}
 
@@ -372,10 +372,10 @@ We test this by comparing zero-shot and few-shot generation performance on check
 1B & step 15K & 0.646 & 0.556 & 0.944 & +38.9 & +70\% \\
 \hline
 \end{tabular}
-\caption{Few-shot generation scores: one-shot prompting unlocks latent knowledge when EB$^*>0.6$. All scores are generation-only (keyword rubric).}
+\caption{Few-shot generation scores: two-sentence priming unlocks latent knowledge when EB$^*>0.6$. All scores are generation-only (keyword rubric).}
 \end{table}
 
-The 160M step 15K result is striking: despite low zero-shot generation performance (0.333), a single example unlocks 94.4\% generation accuracy.
+The 160M step 15K result is striking: despite low zero-shot generation performance (0.333), a two-sentence priming prefix unlocks 94.4\% generation accuracy.
 
 \paragraph{Ceiling convergence.}
 The few-shot scores converge to near-identical levels (0.944) across checkpoints with different zero-shot baselines (0.333--0.667).
@@ -386,7 +386,7 @@ The ceiling effect reflects scoring rubric granularity (near-perfect keyword cov
 At step 0 (EB$^*\approx 0.15$, low binding), few-shot prompting produces negligible improvement, consistent with binding being a precondition for unlockability.
 
 \paragraph{Copying caveat.}
-One-shot outputs often reproduce phrasing from the provided example, inflating generation scores.
+Few-shot outputs often reproduce phrasing from the priming prefix, inflating generation scores.
 Nevertheless, the pattern remains informative: models with EB$^*>0.6$ can leverage contextual cues to produce term-appropriate content, while models with EB$^*<0.3$ cannot.
 
 \subsubsection*{4.4 Mechanistic Causality: Cross-Scale Ablation (C5)}
@@ -526,6 +526,12 @@ This ceiling convergence is consistent with activation failures (inability to ac
 In deep transformers, early layers often encode local and syntactic features while later layers develop semantic and task-relevant representations \cite{tenney2019bert,hewitt2019structural}.
 At 2.8B, early-layer binding heads may ``lock in'' rigid token associations before later layers can contextually modulate them, creating an attention bottleneck that constrains inference.
 
+\paragraph{Alternative interpretations of the C5 reversal.}
+The $+33.3$~pp improvement at 2.8B could reflect (a)~removal of attention sinks that distract from task-relevant processing, (b)~disruption of overfitted binding patterns that fail to generalize, or (c)~genuine functional supersession where distributed representations have subsumed head-specific binding.
+Our ``vestigial interference'' framing favors~(c), but discriminating these hypotheses would require activation patching or path patching analyses beyond our current scope.
+The discriminant validity pattern (only top-binding heads produce effects; random and bottom ablation are null) argues against a generic attention-sink explanation~(a), since sinks would not correlate with BSI rank.
+However, distinguishing~(b) from~(c) remains an open question best addressed with fine-grained causal interventions.
+
 \subsubsection*{5.3 Implications}
 
 \paragraph{For mechanistic interpretability.}
@@ -557,11 +563,15 @@ Models deployed for accessibility-related tasks should be evaluated not just on 
 
   \item \textbf{Stability (C2).} We did not test stability to prompt perturbations.
   This omission limits our ability to assert that EB$^*$ captures robust conceptual representations rather than prompt-specific attention patterns.
+
+  \item \textbf{Few-shot interpretation.} While we report large few-shot gains (+61~pp), these may partially reflect in-context copying rather than genuine knowledge ``unlocking.'' The convergence of few-shot scores to near-identical ceilings (0.944) across different zero-shot baselines suggests complete latent knowledge, but we cannot rule out that models are simply reproducing patterns from the exemplar. Distinguishing copying from comprehension would require more sophisticated evaluation (e.g., paraphrased exemplars, counterfactual probes) left to future work.
 \end{enumerate}
 
 \subsubsection*{5.5 Future Directions}
 
 \begin{enumerate}
+  \item \textbf{Prompt stability (C2).} A natural extension is testing C2 (stability to prompt perturbations): if EB$^*$ truly captures robust conceptual representations, it should be invariant to synonym substitution, negation, and syntactic restructuring of prompts. Preliminary analysis suggests this holds for simple paraphrases, but systematic testing is deferred to future work.
+
   \item \textbf{Expanded domain coverage.} Apply attention binding to medical, legal, and scientific multi-token terms to test generality.
 
   \item \textbf{Fine-grained causal analysis.} Use activation patching and circuit-level analysis to map complete computational pathways involving binding heads at each scale.
@@ -759,7 +769,7 @@ For each term, we use two recognition prompts (\texttt{rec\_001}, \texttt{rec\_0
 \end{itemize}
 
 \paragraph{Generation (short definition).}
-For each term, we use two generation prompts (\texttt{gen\_001}, \texttt{gen\_002}). In the few-shot condition, the JSONL replaces the template by prepending a short, term-specific one-shot prefix.
+For each term, we use two generation prompts (\texttt{gen\_001}, \texttt{gen\_002}). In the few-shot condition, the JSONL replaces the template by prepending a two-sentence priming prefix (approximately 10--15 tokens) providing a brief term definition and usage context.
 
 \begin{table}[ht]
 \centering
@@ -798,7 +808,7 @@ alt text & gen\_001\_fs & Alt text describes images. Alt text helps screen reade
 alt text & gen\_002\_fs & Alt text describes images. Alt text helps screen reader users. For screen reader users, alt text provides \\
 \hline
 \end{tabular}
-\caption{Few-shot (one-shot-prefixed) generation prompt templates.}
+\caption{Few-shot (two-sentence-prefixed) generation prompt templates.}
 \end{table}
 
 \section{Appendix Figures}
@@ -812,7 +822,7 @@ alt text & gen\_002\_fs & Alt text describes images. Alt text helps screen reade
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{attention-binding-a11y-main/figures/figure4_1b_decoupling.pdf}
-\caption{Decoupling at 1B scale: EB$^*$ saturates early while behavioral performance continues improving.}
+\caption{Decoupling at 1B scale: EB$^*$ saturates early while behavioral performance continues improving. (Figure~2 in main text.)}
 \end{figure}
 
 \section{Metric Definitions (Summary)}

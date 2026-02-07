@@ -28,7 +28,7 @@
 
 ## C4: Scale-Dependent Decoupling
 - [ ] Verify 1B EB* plateau at step 15k (0.646) vs behavior rise to 0.806
-- [ ] Generate Figure 4 (decoupling) via `notebooks/figure1_emergence_curves.ipynb`
+- [ ] Generate Figure 2 (decoupling) via `notebooks/figure1_emergence_curves.ipynb`
 
 ## C5: Causal Ablation
 - [ ] Run `python src/minimal_causal.py` (160M)

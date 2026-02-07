@@ -34,6 +34,10 @@ The magnitude of the unlockability effect (+61 pp at 160M step 15k) suggests tha
 
 The 2.8B top-binding heads are concentrated in layers 1 and 4, much earlier than the 160M's distributed pattern (layers 0, 2, 3). In deep transformer networks, early layers typically encode local, syntactic features while later layers develop semantic and task-relevant representations [Tenney et al., 2019; Hewitt & Manning, 2019]. At 2.8B, the early-layer binding heads may "lock in" rigid token associations before later layers can contextually modulate them—effectively creating an attention bottleneck that constrains rather than supports flexible inference.
 
+### Alternative Interpretations of the C5 Reversal
+
+The +33.3 pp improvement at 2.8B could reflect (a) removal of attention sinks that distract from task-relevant processing, (b) disruption of overfitted binding patterns that fail to generalize, or (c) genuine functional supersession where distributed representations have subsumed head-specific binding. Our "vestigial interference" framing favors (c), but discriminating these hypotheses would require activation patching or path patching analyses beyond our current scope. The discriminant validity pattern (only top-binding heads produce effects; random and bottom ablation are null) argues against a generic attention-sink explanation (a), since sinks would not correlate with BSI rank. However, distinguishing (b) from (c) remains an open question best addressed with fine-grained causal interventions.
+
 ## 5.3 Implications
 
 ### For Mechanistic Interpretability
@@ -60,14 +64,18 @@ The finding that accessibility concepts undergo complex developmental trajectori
 
 **Stability (C2).** We explicitly did not test Claim C2, which posits that binding structure in mid-to-late layers exhibits greater stability across prompt perturbations than early-layer binding. While our results are consistent across multiple prompts per term, formal stability analysis—varying phrasing, word order, or context—remains for future work. This omission limits our ability to assert that EB\* captures robust conceptual representations rather than prompt-specific attention patterns.
 
+**Few-shot interpretation.** While we report large few-shot gains (+61 pp), these may partially reflect in-context copying rather than genuine knowledge "unlocking." The convergence of few-shot scores to near-identical ceilings (0.944) across different zero-shot baselines suggests complete latent knowledge, but we cannot rule out that models are simply reproducing patterns from the exemplar. Distinguishing copying from comprehension would require more sophisticated evaluation (e.g., paraphrased exemplars, counterfactual probes) left to future work.
+
 ## 5.5 Future Directions
 
-1. **Expanded domain coverage.** Apply attention binding analysis to medical, legal, and scientific multi-token terms to test generality of the emergence patterns.
+1. **Prompt stability (C2).** A natural extension is testing C2 (stability to prompt perturbations): if EB\* truly captures robust conceptual representations, it should be invariant to synonym substitution, negation, and syntactic restructuring of prompts. Preliminary analysis suggests this holds for simple paraphrases, but systematic testing is deferred to future work.
 
-2. **Fine-grained causal analysis.** Use activation patching and circuit-level analysis to map the complete computational pathways involving binding heads at each scale.
+2. **Expanded domain coverage.** Apply attention binding analysis to medical, legal, and scientific multi-token terms to test generality of the emergence patterns.
 
-3. **Training intervention.** Test whether artificially strengthening or weakening binding heads during training affects behavioral acquisition, enabling true causal claims about the developmental role of binding.
+3. **Fine-grained causal analysis.** Use activation patching and circuit-level analysis to map the complete computational pathways involving binding heads at each scale.
 
-4. **Instruction-tuned models.** Examine whether instruction tuning realigns binding and behavior at scales where they have decoupled, potentially recovering the coupled regime.
+4. **Training intervention.** Test whether artificially strengthening or weakening binding heads during training affects behavioral acquisition, enabling true causal claims about the developmental role of binding.
 
-5. **Binding as a monitoring tool.** Develop EB\* as a real-time training diagnostic that flags when binding-behavior decoupling begins, potentially signaling representational instability.
+5. **Instruction-tuned models.** Examine whether instruction tuning realigns binding and behavior at scales where they have decoupled, potentially recovering the coupled regime.
+
+6. **Binding as a monitoring tool.** Develop EB\* as a real-time training diagnostic that flags when binding-behavior decoupling begins, potentially signaling representational instability.
