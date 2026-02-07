@@ -6,11 +6,11 @@ This study introduces attention-head binding (EB\*) as a mechanistic interpretab
 
 1. **Binding precedes behavior.** EB\* rises sharply in early training—often reaching 60–90% of its final value by step 15k—while behavioral competence on accessibility tasks lags behind. This lead-lag relationship is statistically significant at 160M and 2.8B (Spearman r ≈ 0.33, p < 0.001).
 
-2. **Latent knowledge is unlockable.** When binding is high but behavior is low, few-shot prompting can bridge the gap, improving generation by +17%. This suggests binding creates structural preconditions that behavioral probes may fail to detect.
+2. **Latent knowledge is unlockable.** When binding is high but behavior is low, few-shot prompting can bridge the gap, improving generation scores by up to +61 percentage points (183% relative gain). This suggests binding creates structural preconditions that standard behavioral probes may fail to detect.
 
 3. **Binding and behavior decouple at scale.** The 1B model exhibits a distinctive pattern: binding saturates early while behavior continues improving for the remaining ~130k steps. This decoupling is absent at 160M and 2.8B.
 
-4. **Causal effects reverse across scales.** At 160M, high-binding heads are necessary for performance; at 2.8B, they are *antagonistic*. Both scales show discriminant validity of BSI (only top heads matter), but the direction of their contribution inverts.
+4. **Causal effects reverse across scales.** At 160M, high-binding heads are necessary for performance; at 2.8B, they are *functionally superseded*. Both scales show discriminant validity of BSI (only top heads matter), but the direction of their contribution inverts.
 
 ## 5.2 Mechanistic Interpretation
 
@@ -22,7 +22,7 @@ Our results suggest a developmental trajectory for attention binding across mode
 
 - **Medium models (1B):** The model develops sufficient capacity to route information through alternative pathways. Binding structure forms early but becomes increasingly redundant as training progresses and distributed representations mature. The flat binding trajectory alongside rising behavior indicates a transition to non-binding-dependent computation.
 
-- **Large models (2.8B):** Binding achieves very high levels (EB\* > 0.85) but becomes functionally decoupled or even antagonistic. The high-binding heads—concentrated in early layers (L1, L4)—may implement rigid attention patterns that override more flexible representations in later layers. Ablating them removes this interference, improving performance.
+- **Large models (2.8B):** Binding achieves very high levels (EB\* > 0.85) but becomes functionally superseded. The high-binding heads—concentrated in early layers (L1, L4)—may implement rigid attention patterns that override more flexible representations in later layers. Ablating them removes this interference, improving performance. These heads likely serve a scaffolding role during earlier training, helping the model bind multi-token terms before more flexible distributed representations develop. Their persistence at convergence reflects gradient descent's inability to prune vestigial structures rather than ongoing functional utility.
 
 This lifecycle parallels observations in developmental neuroscience, where early structural scaffolding can become inhibitory as more sophisticated processing develops (Huttenlocher, 2002).
 
@@ -42,7 +42,7 @@ Our findings caution against assuming that high activation of a mechanistic feat
 
 ### For Model Development
 
-The decoupling effect suggests that monitoring internal mechanistic markers alongside behavioral benchmarks could reveal when models are developing potentially problematic internal strategies. A model that achieves high behavioral performance despite antagonistic binding structure may be more fragile than one where binding and behavior are aligned.
+The decoupling effect suggests that monitoring internal mechanistic markers alongside behavioral benchmarks could reveal when models are developing potentially problematic internal strategies. A model that achieves high behavioral performance despite superseded binding structure may be more fragile than one where binding and behavior are aligned.
 
 ### For Accessibility AI
 

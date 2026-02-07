@@ -10,7 +10,7 @@ Our contributions are organized around four empirical claims (C1, C3–C5); a fi
 
 1. **Lead-lag emergence (C1).** Attention binding (EB\*) rises before behavioral competence during training, establishing a temporal precedence relationship (§4.1).
 
-2. **Unlockable latent knowledge (C3).** Models with high binding but low baseline performance contain latent knowledge that a single example can unlock, yielding up to +61 percentage points improvement and near-ceiling accuracy (94.4%) from near-chance baselines when EB\* > 0.6 (§4.2).
+2. **Unlockable latent knowledge (C3).** Models with high binding but low baseline performance contain latent knowledge that a single example can unlock, yielding up to +61 percentage points generation improvement and near-ceiling generation accuracy (94.4%) from low zero-shot baselines when EB\* > 0.6 (§4.2).
 
 3. **Scale-dependent decoupling (C4).** At the 1B scale, binding structure saturates early while behavioral performance continues improving—revealing that larger models can develop alternative representational strategies that bypass explicit attention binding (§4.3).
 

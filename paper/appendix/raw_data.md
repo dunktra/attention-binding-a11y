@@ -2,7 +2,7 @@
 
 ## A.1 Full Checkpoint Summary
 
-| Model | Checkpoint | Step (k) | Rec Acc | Gen Mean | Beh Avg | EB\* Mean | EB\* Max | Best Layer |
+| Model | Checkpoint | Step (k) | Rec Acc | Gen Score | Beh Avg | EB\* Mean | EB\* Max | Best Layer |
 |-------|-----------|----------|---------|----------|---------|-----------|----------|------------|
 | 160M | step0 | 0 | 0.167 | 0.000 | 0.083 | 0.157 | 0.307 | L6 |
 | 160M | step15000 | 15 | 0.000 | 0.333 | 0.167 | 0.644 | 0.717 | L3 |

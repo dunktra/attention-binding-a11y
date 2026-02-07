@@ -26,13 +26,13 @@ If binding structure represents genuine conceptual organization, models with hig
 
 **Results.** Table 2 shows dramatic unlockability effects:
 
-| Model | Checkpoint | EB\* | Zero-Shot | Few-Shot | Δ (pp) | Relative |
+| Model | Checkpoint | EB\* | Zero-Shot Gen | Few-Shot Gen | Δ (pp) | Relative |
 |-------|-----------|------|-----------|----------|--------|----------|
 | 160M | step 15k | 0.644 | 0.333 | **0.944** | **+61.1** | +183% |
 | 160M | step 30k | 0.642 | 0.667 | 0.944 | +27.8 | +42% |
 | 1B | step 15k | 0.646 | 0.556 | 0.944 | +38.9 | +70% |
 
-The 160M step 15k result is striking: despite near-chance zero-shot performance (0.333), a single example unlocks 94.4% accuracy—approaching ceiling performance. This represents a **183% relative improvement** (+61 percentage points), far exceeding typical few-shot gains in base language models. The inverse relationship between zero-shot performance and few-shot gain is consistent across all three conditions.
+The 160M step 15k result is striking: despite low zero-shot generation performance (0.333), a single example unlocks 94.4% generation accuracy—approaching ceiling performance. This represents a **183% relative improvement** (+61 percentage points), far exceeding typical few-shot gains in base language models. The inverse relationship between zero-shot performance and few-shot gain is consistent across all three conditions.
 
 **Interpretation.** The inverse relationship between zero-shot performance and few-shot gain confirms the unlockability hypothesis: EB\* > 0.6 identifies models with fully formed but behaviorally dormant conceptual representations. Zero-shot prompts fail to activate these representations, while minimal context (one example) suffices to prime retrieval. This demonstrates that attention binding detects *latent competence* invisible to standard behavioral evaluation.
 
@@ -42,7 +42,7 @@ The 160M step 15k result is striking: despite near-chance zero-shot performance 
 
 ## 4.3 Scale-Dependent Decoupling (C4)
 
-The most striking finding in our longitudinal analysis is the *binding-behavior decoupling effect* at the 1B scale.
+A distinctive finding in our longitudinal analysis is the *binding-behavior decoupling effect* at the 1B scale.
 
 **Pythia-1B trajectory.** EB\* rises rapidly to 0.646 at step 15k and then plateaus, remaining in the narrow range 0.595–0.646 through step 143k. In stark contrast, behavioral performance climbs steadily from 0.167 (step 0) to 0.806 (step 143k), with the strongest gains occurring *after* binding has saturated. At step 30k, the 1B model achieves its peak recognition accuracy (83.3%) while EB\* has already begun declining (0.611 vs. 0.646 at step 15k).
 
