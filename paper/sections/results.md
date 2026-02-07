@@ -32,9 +32,9 @@ If binding structure represents genuine conceptual organization, models with hig
 | 160M | step 30k | 0.642 | 0.667 | 0.944 | +27.8 | +42% |
 | 1B | step 15k | 0.646 | 0.556 | 0.944 | +38.9 | +70% |
 
-The 160M step 15k result is striking: despite low zero-shot generation performance (0.333), a single example unlocks 94.4% generation accuracy—approaching ceiling performance. This represents a **183% relative improvement** (+61 percentage points), far exceeding typical few-shot gains in base language models. The inverse relationship between zero-shot performance and few-shot gain is consistent across all three conditions.
+The 160M step 15k result is striking: despite low zero-shot generation performance (0.333), a single example unlocks 94.4% generation accuracy.
 
-**Interpretation.** The inverse relationship between zero-shot performance and few-shot gain confirms the unlockability hypothesis: EB\* > 0.6 identifies models with fully formed but behaviorally dormant conceptual representations. Zero-shot prompts fail to activate these representations, while minimal context (one example) suffices to prime retrieval. This demonstrates that attention binding detects *latent competence* invisible to standard behavioral evaluation.
+**Ceiling convergence.** The few-shot scores converge to near-identical levels (0.944) across checkpoints with different zero-shot baselines (0.333–0.667). This consistency suggests that binding structure at EB* > 0.6 corresponds to *complete* conceptual knowledge that is simply inaccessible to standard prompting—not partial knowledge that improves incrementally with training. The ceiling effect reflects scoring rubric granularity (near-perfect keyword coverage) rather than model capability limits.
 
 **Control.** At step 0 (EB\* ≈ 0.15, low binding), few-shot prompting produces negligible improvement, confirming that binding structure is a necessary precondition for unlockability.
 

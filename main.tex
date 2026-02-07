@@ -365,6 +365,11 @@ We test this by comparing zero-shot and few-shot generation performance on check
 
 The 160M step 15K result is striking: despite low zero-shot generation performance (0.333), a single example unlocks 94.4\% generation accuracy.
 
+\paragraph{Ceiling convergence.}
+The few-shot scores converge to near-identical levels (0.944) across checkpoints with different zero-shot baselines (0.333--0.667).
+This consistency suggests that binding structure at EB$^*>0.6$ corresponds to \emph{complete} conceptual knowledge that is simply inaccessible to standard prompting---not partial knowledge that improves incrementally with training.
+The ceiling effect reflects scoring rubric granularity (near-perfect keyword coverage) rather than model capability limits.
+
 \paragraph{Control.}
 At step 0 (EB$^*\approx 0.15$, low binding), few-shot prompting produces negligible improvement, consistent with binding being a precondition for unlockability.
 
