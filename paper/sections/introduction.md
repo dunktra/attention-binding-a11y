@@ -14,7 +14,7 @@ Our contributions are organized around four empirical claims (C1, C3–C5); a fi
 
 3. **Scale-dependent decoupling (C4).** At the 1B scale, binding structure saturates early while behavioral performance continues improving—revealing that larger models can develop alternative representational strategies that bypass explicit attention binding (§4.3).
 
-4. **Cross-scale causal regimes (C5).** Targeted ablation of high-binding heads reveals opposite causal effects across scales: necessary at 160M but interfering at 2.8B, providing mechanistic evidence for the decoupling phenomenon (§4.4).
+4. **Cross-scale causal regimes (C5).** Targeted ablation of high-binding heads reveals opposite causal effects across scales: necessary at 160M but functionally superseded at 2.8B, providing mechanistic evidence for the decoupling phenomenon (§4.4).
 
 These findings establish attention binding as a diagnostic tool for concept emergence and reveal that the relationship between internal mechanistic structure and external behavioral competence undergoes qualitative transformation across model scales—a phenomenon we term the *binding-behavior decoupling effect*.
 
