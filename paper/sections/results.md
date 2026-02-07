@@ -98,6 +98,10 @@ The discriminant validity of BSI is preserved: only top-binding heads produce an
 | 160M | **−16.7 pp** | −6.7 pp | 0.0 pp | Coupled (binding supports behavior) |
 | 2.8B | **+33.3 pp** | 0.0 pp | 0.0 pp | Decoupled (binding interferes) |
 
+**Why the causal effects differ in magnitude and pattern.** The asymmetry between scales reveals distinct mechanistic regimes. At 160M, binding heads are *load-bearing*: graded ablation effects (top > random > bottom) indicate limited capacity for functional redundancy, with all heads contributing proportionally to task performance. The −16.7 pp impairment reflects partial disruption of necessary computational pathways.
+
+At 2.8B, binding heads are *vestigial and interfering*: the binary pattern (top ablation improves performance; random/bottom ablations have no effect) indicates massive functional redundancy. The model has developed alternative distributed representations, rendering most heads irrelevant. That *only* top-binding heads matter at 2.8B—and their removal improves performance—suggests they actively interfere with superior downstream pathways rather than merely being redundant. The larger improvement magnitude (+33.3 pp > −16.7 pp) indicates the model was actively suppressed from using its full capability.
+
 **Interpretation.** At 160M, the model relies on attention binding heads for task execution—they are necessary components of the task circuit. At 2.8B, the model has developed alternative pathways for task execution that are *impeded* by the rigid, early-layer binding patterns. The high-binding heads in 2.8B (concentrated in layers 1 and 4) may implement overly specific attention patterns that override more flexible, distributed representations developed in later layers.
 
 This cross-scale reversal provides direct mechanistic evidence for the C4 decoupling effect: binding structure and behavioral competence are not merely uncorrelated at larger scales—they can become actively counterproductive, with binding heads functionally superseded by more flexible representations.
