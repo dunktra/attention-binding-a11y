@@ -38,7 +38,7 @@ If binding structure represents genuine conceptual organization, models with hig
 
 The 160M step 15k result is striking: despite low zero-shot generation performance (0.333), a single example unlocks 94.4% generation accuracy.
 
-**Ceiling convergence.** The few-shot scores converge to near-identical levels (0.944) across checkpoints with different zero-shot baselines (0.333–0.667). This consistency suggests that binding structure at EB* > 0.6 corresponds to *complete* conceptual knowledge that is simply inaccessible to standard prompting—not partial knowledge that improves incrementally with training. The ceiling effect reflects scoring rubric granularity (near-perfect keyword coverage) rather than model capability limits.
+**Ceiling convergence.** The few-shot scores converge to near-identical levels (0.944) across checkpoints with different zero-shot baselines (0.333–0.667). This consistency suggests that binding structure at EB* > 0.6 corresponds to *complete* conceptual knowledge that is simply inaccessible to standard prompting—not partial knowledge that improves incrementally with training. The ceiling effect reflects scoring rubric granularity (near-perfect keyword coverage) rather than model capability limits [Burns et al., 2022].
 
 **Control.** At step 0 (EB\* ≈ 0.15, low binding), few-shot prompting produces negligible improvement, confirming that binding structure is a necessary precondition for unlockability.
 
@@ -61,7 +61,7 @@ A distinctive finding in our longitudinal analysis is the *binding-behavior deco
 
 At 160M and 2.8B, binding and behavior co-evolve (positively correlated). At 1B, they decouple: binding saturates early while behavior improves through mechanisms that do not rely on increased binding strength.
 
-**Interpretation.** The 1B model appears to occupy a transitional regime between small models (where binding directly supports behavior) and large models (where binding saturates at high levels and behavior develops through distributed or redundant representations). This may reflect a capacity threshold: at 1B parameters, the model has sufficient capacity to develop behavioral competence through pathways other than attention binding, but not enough capacity for binding to saturate at the high levels seen in 2.8B.
+**Interpretation.** The 1B model occupies a transitional regime [Kaplan et al., 2020] between small models (where binding directly supports behavior) and large models (where binding saturates at high levels and behavior develops through distributed or redundant representations [Hinton et al., 1986]). This may reflect a capacity threshold: at 1B parameters, the model has sufficient capacity to develop behavioral competence through pathways other than attention binding, but not enough capacity for binding to saturate at the high levels seen in 2.8B.
 
 *[Figure 4: 1B decoupling effect. EB\* (red) saturates at step 15k while behavioral score (green) continues rising through step 143k. Shaded region indicates the decoupling period.]*
 
@@ -104,7 +104,7 @@ The discriminant validity of BSI is preserved: only top-binding heads produce an
 
 **Why the causal effects differ in magnitude and pattern.** The asymmetry between scales reveals distinct mechanistic regimes. At 160M, binding heads are *load-bearing*: graded ablation effects (top > random > bottom) indicate limited capacity for functional redundancy, with all heads contributing proportionally to task performance. The −16.7 pp impairment reflects partial disruption of necessary computational pathways.
 
-At 2.8B, binding heads are *vestigial and interfering*: the binary pattern (top ablation improves performance; random/bottom ablations have no effect) indicates massive functional redundancy. The model has developed alternative distributed representations, rendering most heads irrelevant. That *only* top-binding heads matter at 2.8B—and their removal improves performance—suggests they actively interfere with superior downstream pathways rather than merely being redundant. The larger improvement magnitude (+33.3 pp > −16.7 pp) indicates the model was actively suppressed from using its full capability.
+At 2.8B, binding heads are *vestigial and interfering*: the binary pattern (top ablation improves performance; random/bottom ablations have no effect) indicates massive functional redundancy. The model has developed alternative distributed representations, rendering most heads irrelevant. That *only* top-binding heads matter at 2.8B—and their removal improves performance—suggests they actively interfere with superior downstream pathways rather than merely being redundant. The larger improvement magnitude (+33.3 pp > −16.7 pp) indicates the model was actively suppressed from using its full capability [Frankle & Carbin, 2019].
 
 **Interpretation.** At 160M, the model relies on attention binding heads for task execution—they are necessary components of the task circuit. At 2.8B, the model has developed alternative pathways for task execution that are *impeded* by the rigid, early-layer binding patterns. The high-binding heads in 2.8B (concentrated in layers 1 and 4) may implement overly specific attention patterns that override more flexible, distributed representations developed in later layers.
 

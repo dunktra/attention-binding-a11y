@@ -340,7 +340,7 @@ At 160M and 2.8B, binding and behavior co-evolve (positively correlated).
 At 1B, they decouple: binding saturates early while behavior improves through mechanisms that do not rely on increased binding strength.
 
 \paragraph{Interpretation.}
-The 1B model occupies a transitional regime between small models (where binding directly supports behavior) and large models (where binding saturates at high levels and behavior develops through distributed or redundant representations).
+The 1B model occupies a transitional regime \cite{kaplan2020scaling} between small models (where binding directly supports behavior) and large models (where binding saturates at high levels and behavior develops through distributed or redundant representations \cite{hinton1986distributed}).
 
 \paragraph{Regression at convergence.}
 Both 160M and 2.8B show slight behavioral dips at step 143K despite stable or increasing EB$^*$.
@@ -510,7 +510,7 @@ The binary ablation pattern (top ablation improves; random/bottom ablations have
 Ablating them removes an attention bottleneck, allowing more flexible late-layer representations to function fully.
 The larger improvement magnitude ($+33.3$~pp) compared to the 160M impairment ($-16.7$~pp) indicates the model was actively suppressed from using its full capability.
 These heads likely served a scaffolding role during earlier training, helping the model bind multi-token terms before more flexible distributed representations developed.
-Their persistence at convergence reflects gradient descent's inability to prune structures that are locally optimal early in training but globally suboptimal at convergence.
+Their persistence at convergence reflects gradient descent's inability to prune structures that are locally optimal early in training but globally suboptimal at convergence \cite{frankle2019lottery}.
 \end{itemize}
 
 \paragraph{Structure--behavior dissociation.}
@@ -520,10 +520,10 @@ One prominent example is ``grokking'' \cite{power2022grokking}, where networks c
 \paragraph{Unlockability as evidence of complete latent representations.}
 The magnitude of the unlockability effect (+61 pp at 160M step 15K) suggests that binding structure at EB$^*>0.6$ corresponds to not partial but \emph{complete} conceptual knowledge that is simply inaccessible to standard prompting.
 Across the tested checkpoints, few-shot performance converges to near-identical levels (0.944) despite different zero-shot baselines (0.333--0.667).
-This ceiling convergence is consistent with activation failures rather than missing knowledge.
+This ceiling convergence is consistent with activation failures (inability to access existing knowledge) rather than missing knowledge \cite{burns2022discovering}.
 
 \paragraph{Why early-layer binding interferes at scale.}
-In deep transformers, early layers often encode local and syntactic features while later layers develop semantic and task-relevant representations.
+In deep transformers, early layers often encode local and syntactic features while later layers develop semantic and task-relevant representations \cite{tenney2019bert,hewitt2019structural}.
 At 2.8B, early-layer binding heads may ``lock in'' rigid token associations before later layers can contextually modulate them, creating an attention bottleneck that constrains inference.
 
 \subsubsection*{5.3 Implications}
