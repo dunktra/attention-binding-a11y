@@ -78,7 +78,7 @@ Ablating the four heads with highest average BSI (L3H0, L2H8, L3H2, L0H0; avg BS
 
 The graded pattern—top ablation damages most, random damages moderately, bottom ablation has zero effect—indicates that BSI captures functionally relevant structure. The specificity (top drop minus random drop) is +0.100 for the combined metric, confirming that high-binding heads are specifically, not just incidentally, important.
 
-### 4.4.2 Pythia-2.8B: Antagonistic/Decoupled Regime
+### 4.4.2 Pythia-2.8B: Functionally Superseded Regime
 
 Strikingly, the same ablation procedure produces the *opposite* effect at 2.8B scale. Ablating the four highest-BSI heads (L1H12, L1H11, L4H16, L1H6; avg BSI = 0.78–0.94) *improves* recognition accuracy:
 
@@ -95,12 +95,12 @@ The discriminant validity of BSI is preserved: only top-binding heads produce an
 
 | Model | Top Ablated Rec Δ | Random Ablated Rec Δ | Bottom Ablated Rec Δ | Regime |
 |-------|-------------------|---------------------|---------------------|--------|
-| 160M | **−16.7%** | −6.7% | 0.0% | Coupled (binding supports behavior) |
-| 2.8B | **+33.3%** | 0.0% | 0.0% | Decoupled (binding interferes) |
+| 160M | **−16.7 pp** | −6.7 pp | 0.0 pp | Coupled (binding supports behavior) |
+| 2.8B | **+33.3 pp** | 0.0 pp | 0.0 pp | Decoupled (binding interferes) |
 
 **Interpretation.** At 160M, the model relies on attention binding heads for task execution—they are necessary components of the task circuit. At 2.8B, the model has developed alternative pathways for task execution that are *impeded* by the rigid, early-layer binding patterns. The high-binding heads in 2.8B (concentrated in layers 1 and 4) may implement overly specific attention patterns that override more flexible, distributed representations developed in later layers.
 
-This cross-scale reversal provides direct mechanistic evidence for the C4 decoupling effect: binding structure and behavioral competence are not merely uncorrelated at larger scales—they can become actively antagonistic.
+This cross-scale reversal provides direct mechanistic evidence for the C4 decoupling effect: binding structure and behavioral competence are not merely uncorrelated at larger scales—they can become actively counterproductive, with binding heads functionally superseded by more flexible representations.
 
 ### 4.4.4 Limitations
 

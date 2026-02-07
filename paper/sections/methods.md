@@ -22,25 +22,30 @@ For each term, we construct two types of evaluation prompts (12 total):
 
 - **Generation (6 prompts).** Open-ended completions testing conceptual understanding (e.g., "In web accessibility, a screen reader is"). Scored via a keyword rubric: we count word-boundary matches against a curated keyword list per term (e.g., "blind," "visual," "assistive," "software" for "screen reader"), normalize to a threshold of 3 keywords, and apply contradiction penalties. This yields a score in [0, 1].
 
-The **behavioral score** for each checkpoint is the average across all 12 prompts: $\text{Beh} = \frac{1}{2}(\text{RecAcc} + \text{GenMean})$.
+The **behavioral score** for each checkpoint is the average across all 12 prompts: $\text{Beh} = \frac{1}{2}(\text{RecAcc} + \text{GenScore})$.
 
 ## 3.3 Attention-Head Binding Metrics
 
+### Attention Convention
+
+We write $A_{l,h}[i,j]$ for the attention weight in layer $l$, head $h$ from query position $i$ to key position $j$. Thus $A_{l,h}[i,j]$ with $i > j$ represents a later token attending to an earlier token (later-to-earlier attention flow).
+
 ### Binding Strength Index (BSI)
 
-For a given prompt, term span tokens at positions $\{s_1, s_2, \ldots, s_k\}$, layer $l$, and head $h$, the **Binding Strength Index** measures how strongly later span tokens attend to earlier span tokens:
+For a term span occupying token positions $\{s_1, s_2, \ldots, s_k\}$, the BSI at layer $l$, head $h$ measures the average later-to-earlier attention within the span (Clark et al., 2019; Haviv et al., 2023; Miletić & Schulte im Walde, 2024):
 
 $$\text{BSI}_{l,h} = \frac{1}{|\mathcal{P}|} \sum_{(i,j) \in \mathcal{P}} A_{l,h}[s_i, s_j]$$
 
-where $\mathcal{P} = \{(i,j) : s_i > s_j\}$ is the set of later-to-earlier token pairs within the term span, and $A_{l,h}$ is the attention pattern matrix for layer $l$, head $h$.
+where $\mathcal{P} = \{(i,j) : s_i > s_j\}$ is the set of later-to-earlier token pairs within the term span.
+While the concept of inspecting intra-span attention patterns has precedents in multi-word expression analysis, the specific directed formulation and its application to tracking concept emergence are novel to this work.
 
 ### Excess Binding (EB)
 
 The **Excess Binding** at layer $l$ captures how much the best head exceeds the layer average:
 
-$$\text{EB}_l = \max_h \text{BSI}_{l,h} - \frac{1}{H} \sum_h \text{BSI}_{l,h}$$
+$$\text{EB}_l = \max_h \text{BSI}_{l,h} - \frac{1}{H} \sum_{h=1}^{H} \text{BSI}_{l,h}$$
 
-This measures whether binding is concentrated in specific heads (high EB) or distributed uniformly (low EB). High EB indicates specialized binding structure.
+where $H$ is the number of attention heads in the layer. This measures whether binding is concentrated in specific heads (high EB) or distributed uniformly (low EB). High EB indicates specialized binding structure.
 
 ### EB\* (Aggregate Binding)
 
