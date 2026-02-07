@@ -6,6 +6,8 @@ Code and data for the paper *"Attention-Head Binding as a Mechanistic Marker of 
 
 ## Overview
 
+This study extends prior work on accessibility knowledge across Pythia model sizes (Salas, 2026) by introducing a mechanistic attention-based metric for concept emergence.
+
 We introduce **EB\*** (effective binding), a mechanistic interpretability metric that tracks how attention heads bind multi-token accessibility terms (e.g., "screen reader," "alt text") during training. Using the Pythia model suite (160M, 1B, 2.8B parameters) across eight training checkpoints, we demonstrate:
 
 - **C1 (Lead-lag emergence):** Binding precedes behavioral competence (Spearman r = 0.33–0.34, p < 0.001)
@@ -167,3 +169,9 @@ pandoc main.md sections/introduction.md sections/related_work.md \
 ## License
 
 MIT License — see [LICENSE](LICENSE).
+
+## Acknowledgment of Prior Work
+
+This work builds directly on and extends prior analysis by **Trisha Salas** on testing accessibility-related knowledge across Pythia model sizes ([Salas, 2026](https://trishasalas.com/posts/testing-accessibility-knowledge-across-pythia-model-sizes)) 
+
+Salas’ work established that accessibility concepts such as *“screen reader”* and *“alt text”* emerge behaviorally at different rates across model scales. The present study extends this line of inquiry by shifting from **behavioral evaluation** to **mechanistic analysis**, introducing **EB\*** as an attention-based binding metric to probe *how* and *when* these concepts emerge internally during training, and how their causal role changes with scale. For more details, visit [@trishasalas's Github repo](https://github.com/trishasalas/mech-interp-research/blob/main/pythia/pythia-a11y-emergence.ipynb).
