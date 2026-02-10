@@ -1,6 +1,7 @@
 # Attention-Head Binding as a Mechanistic Marker of Accessibility Concept Emergence
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://img.shields.io/badge/DOI-10.22541%2Fau.177067444.42828315%2Fv1-blue)](https://doi.org/10.22541/au.177067444.42828315/v1)
 
 Code and data for the paper *"Attention-Head Binding as a Mechanistic Marker of Accessibility Concept Emergence in Language Models"* by Khanh-Dung Tran (2026). 
 
