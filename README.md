@@ -144,12 +144,12 @@ python src/analysis_pilot.py 160m
 ## Citation
 
 ```bibtex
-@article{tran2026binding,
-  title={Attention-Head Binding as a Mechanistic Marker of Accessibility
-         Concept Emergence in Language Models},
+@online{tran2026attentionbinding,
+  title={Attention-Head Binding as a Mechanistic Marker of Accessibility Concept Emergence in Language Models},
   author={Tran, Khanh-Dung},
   year={2026},
-  url={https://github.com/dunktra/attention-binding-a11y}
+  doi={10.22541/au.177067444.42828315/v1},
+  url={https://doi.org/10.22541/au.177067444.42828315/v1}
 }
 ```
 
